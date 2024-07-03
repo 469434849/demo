@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 用黑体显示中文
 plt.rcParams['axes.unicode_minus'] = False     # 正常显示负号
 
-dir = 'D:\\code\\njust\\block-emulator\\test\\NewTest5'
+# dir = 'D:\\code\\njust\\block-emulator\\test\\NewTest5'
+dir = './NewTest5'
 # 获取所有文件名
 files = glob.glob(f"{dir}/*_sn_*.csv")
 
