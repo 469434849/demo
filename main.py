@@ -2,6 +2,7 @@
 import random
 
 import numpy as np
+import matplotlib
 
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -16,6 +17,12 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
+    print(matplotlib.matplotlib_fname())
+    from matplotlib.font_manager import findSystemFonts, FontProperties
+
+    for font in findSystemFonts(fontpaths=None, fontext='ttf'):
+        print(FontProperties(fname=font).get_name())
+
     r = random.randrange(0,5)
     print(r)
     # 原始数据

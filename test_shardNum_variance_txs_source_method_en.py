@@ -53,11 +53,11 @@ for file in files:
 # all_txs_values = [10000, 50000, 100000, 200000, 400000, 800000, 1000000]
 all_txs_values = clpa_sharding[list(clpa_sharding.keys())[0]].keys()
 # 创建一个5行2列的子图布局
-fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(20, 10), sharex=True)
+fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(14, 6), sharex=True)
 
 # Flatten the axs array for easier indexing
 axs = axs.flatten()
-
+all_txs_values = [20000]
 # 遍历all_txs值，为每个值创建一个子图
 for idx, txs in enumerate(all_txs_values):
     ax1 = axs[idx * 2]
@@ -68,13 +68,13 @@ for idx, txs in enumerate(all_txs_values):
     txs_data_clpa = [clpa_sharding[k][txs]['variance'] for k in sorted(clpa_sharding.keys())]
     txs_data_cpla_plus = [cpla_plus_sharding[k][txs]['variance'] for k in sorted(cpla_plus_sharding.keys())]
 
-    ax1.plot(sorted(default_sharding.keys()), txs_data_default, label='考虑节点账户关系的分片算法', marker='o')
-    ax1.plot(sorted(clpa_sharding.keys()), txs_data_clpa, label='本发明', marker='>')
+    ax1.plot(sorted(default_sharding.keys()), txs_data_default, label='CLPA', marker='o')
+    ax1.plot(sorted(clpa_sharding.keys()), txs_data_clpa, label='Proposed', marker='>')
     # ax1.plot(sorted(cpla_plus_sharding.keys()), txs_data_cpla_plus, label='current')
 
-    ax1.set_title(f'总交易量 = {txs}', fontsize=20)
-    ax1.set_ylabel('负载因子', fontsize=20)
-    ax1.set_xlabel('分片数', fontsize=20)
+    ax1.set_title(f'All Txs = {txs}', fontsize=30)
+    ax1.set_ylabel('load factor', fontsize=30)
+    ax1.set_xlabel('Number of Shards', fontsize=30)
     ax1.legend()
     ax1.grid(True)
 
@@ -86,18 +86,18 @@ for idx, txs in enumerate(all_txs_values):
     txs_ratio_cpla_plus = [float(cpla_plus_sharding[k][txs]['Cross-Shard txs Reduction Ratio']) for k in
                            sorted(cpla_plus_sharding.keys())]
 
-    ax2.plot(sorted(default_sharding.keys()), txs_ratio_default, label='考虑节点账户关系的分片算法', marker='o')
-    ax2.plot(sorted(clpa_sharding.keys()), txs_ratio_clpa, label='本发明', marker='>')
+    ax2.plot(sorted(default_sharding.keys()), txs_ratio_default, label='CLPA', marker='o')
+    ax2.plot(sorted(clpa_sharding.keys()), txs_ratio_clpa, label='Proposed', marker='>')
     # ax2.plot(sorted(cpla_plus_sharding.keys()), txs_ratio_cpla_plus, label='current')
 
-    ax2.set_title(f'总交易量 = {txs}', fontsize=20)
-    ax2.set_ylabel('跨分片交易减少比例', fontsize=20)
-    ax2.set_xlabel('分片数', fontsize=20)
+    ax2.set_title(f'All Txs = {txs}', fontsize=30)
+    ax2.set_ylabel('ctxs reduction ratio', fontsize=30)
+    ax2.set_xlabel('Number of Shards', fontsize=30)
     ax2.legend()
     ax2.grid(True)
 
 # 设置全局标题
-fig.suptitle('不同的交易量下负载因子和跨分片交易减少比例与分片数的关系', fontsize=20)
+# fig.suptitle('The relationship between load factor and ctxs reduction ratio and shard number under different Txs', fontsize=30)
 
 # 调整布局防止重叠
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
