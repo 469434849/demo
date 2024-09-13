@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 from mysqlTest import Connect_and_read
-
+plt.rcParams['font.family'] = ['Times New Roman']
+plt.rcParams['axes.unicode_minus'] = False
 # 示例数据
 query = "SELECT * FROM emulator_copy1"
 data = Connect_and_read(query)
@@ -21,7 +22,7 @@ width = 0.2  # 柱子的宽度
 x = target_shardNumbers
 x_pos = range(len(x))  # x轴上的位置
 
-plt.figure(figsize=(10, 6))
+fig_ctx_ratio = plt.figure(figsize=(7, 5))
 
 # 按照target_modes的顺序绘制柱子
 for i, mode in enumerate(target_modes):
@@ -36,9 +37,10 @@ plt.xticks([p - width / 2 + width * len(target_modes) / 2 for p in x_pos], x)
 ax = plt.gca()
 
 # 添加标签、标题和图例
-plt.xlabel('Number of Shards', fontsize=20)
-plt.ylabel('Cross Transaction Ratio', fontsize=20)
+plt.xlabel('Number of Shards', fontsize=18)
+plt.ylabel('Cross Transaction Ratio', fontsize=18)
 plt.legend(title='')
 
 # 显示图表
 plt.show()
+fig_ctx_ratio.savefig('ctx_ratio_plot.pdf', format='pdf')

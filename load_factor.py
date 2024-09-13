@@ -4,7 +4,7 @@ import glob
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plt.rcParams['font.family'] = ['Times New Roman']  # 用黑体显示中文
+plt.rcParams['font.family'] = ['Times New Roman']
 plt.rcParams['axes.unicode_minus'] = False  # 正常显示负号
 
 # dir = 'D:\\code\\njust\\block-emulator\\test\\NewTest5'
@@ -49,7 +49,7 @@ all_txs_values = clpa_sharding[list(clpa_sharding.keys())[0]].keys()
 all_txs_values = [20000]
 
 # 绘制方差子图
-fig_variance = plt.figure(figsize=(7, 6))
+fig_variance = plt.figure(figsize=(7, 5))
 for idx, txs in enumerate(all_txs_values):
     txs_data_default = [default_sharding[k][txs]['variance'] for k in sorted(default_sharding.keys())]
     txs_data_clpa = [clpa_sharding[k][txs]['variance'] for k in sorted(clpa_sharding.keys())]
@@ -63,11 +63,11 @@ for idx, txs in enumerate(all_txs_values):
     plt.ylabel('load factor', fontsize=18)
     plt.xlabel('Number of Shards', fontsize=18)
     plt.legend()
-    plt.grid(True)
+    # plt.grid(True)
     plt.xticks([2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52])
 
 # 绘制跨片交易减少比率子图
-fig_ratio = plt.figure(figsize=(7, 6))
+fig_ratio = plt.figure(figsize=(7, 5))
 for idx, txs in enumerate(all_txs_values):
     txs_ratio_default = [float(default_sharding[k][txs]['Cross-Shard txs Reduction Ratio']) for k in
                          sorted(default_sharding.keys())]
@@ -84,7 +84,7 @@ for idx, txs in enumerate(all_txs_values):
     plt.ylabel('ctxs reduction ratio', fontsize=18)
     plt.xlabel('Number of Shards', fontsize=18)
     plt.legend()
-    plt.grid(True)
+    # plt.grid(True)
     plt.xticks([2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52])
 
 # 调整布局防止重叠
@@ -93,7 +93,7 @@ plt.tight_layout()
 # 保存为 PDF 和 SVG 格式
 fig_variance.savefig('variance_plot.pdf', format='pdf')
 # fig_variance.savefig('variance_plot.svg', format='svg')
-fig_ratio.savefig('ratio_plot.pdf', format='pdf')
+fig_ratio.savefig('ctx_reduce_ratio_plot.pdf', format='pdf')
 # fig_ratio.savefig('ratio_plot.svg', format='svg')
 
 # 显示图形（可选）
