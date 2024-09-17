@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-
 from mysqlTest import Connect_and_read
+
 plt.rcParams['font.family'] = ['Times New Roman']
 plt.rcParams['axes.unicode_minus'] = False
+
 # 示例数据
 query = "SELECT * FROM emulator_copy1"
 data = Connect_and_read(query)
@@ -43,4 +44,4 @@ plt.legend(title='')
 
 # 显示图表
 plt.show()
-fig_ctx_ratio.savefig('ctx_ratio_plot.pdf', format='pdf')
+fig.savefig('ctx_ratio_plot.pdf', format='pdf')
