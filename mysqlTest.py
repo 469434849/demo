@@ -5,8 +5,8 @@ from pymysql import Error
 def Connect_and_read(query):
     data = []
     connection = pymysql.connect(
-        host='123.60.21.190',  # 例如 'localhost'
-        # host='localhost',  # 例如 'localhost'
+        # host='123.60.21.190',  # 例如 'localhost'
+        host='localhost',  # 例如 'localhost'
         database='block_chain',  # 数据库名称
         user='root',  # 用户名
         password='qweasd'  # 密码

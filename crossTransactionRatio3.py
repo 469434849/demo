@@ -54,7 +54,7 @@ for i, speed in enumerate(target_speeds):
     ax.legend(title='')
     # ax.set_title(f"Speed {speed}", fontsize=18)
     # 设置子图标题在 x 轴下方
-    ax.text(0.5, -0.15, f" ({prefixes[i]}) TXs arrival rates:{speed}(TXs/s)", transform=ax.transAxes, ha='center', fontsize=18)
+    ax.text(0.5, -0.15, f" ({prefixes[i]}) TX arrival rate = {speed}(TXs/sec)", transform=ax.transAxes, ha='center', fontsize=18)
 
 plt.tight_layout()
 plt.show()
