@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from mysqlTest import Connect_and_read
 
-plt.rcParams['font.family'] = ['Times New Roman']
+# plt.rcParams['font.family'] = ['Times New Roman']
+plt.rcParams['font.sans-serif']=['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
 
 # 示例数据
@@ -32,17 +33,17 @@ for i, speed in enumerate(target_speeds):
         elif mode == 'Metis':
             ax.plot(x, y, marker='o', label=mode, color='green')  # 指定 Metis 类型线条为绿色
         elif mode == 'Proposed':
-            ax.plot(x, y, marker='o', label=mode, color='red')  # 指定 Proposed 类型线条为红色
+            ax.plot(x, y, marker='o', label="DCLPA", color='red')  # 指定 Proposed 类型线条为红色
         # ax.plot(x, y, marker='o', label=mode)
     ax.set_xticks(range(8, 65, 8))
-    ax.set_xlabel('Number of Shards', fontsize=16)
-    ax.set_ylabel('Throughput(TPS)', fontsize=16)
-    ax.legend(title='')
+    ax.set_xlabel('分片数', fontsize=16)
+    ax.set_ylabel('吞吐量(TPS)', fontsize=16)
+    ax.legend(title='',fontsize=14)
     # ax.set_title(f"Speed {speed}", fontsize=18)
     # 设置子图标题在 x 轴下方
-    ax.text(0.5, -0.15, f" ({prefixes[i]}) TX arrival rate = {speed}(TXs/sec)", transform=ax.transAxes, ha='center', fontsize=18)
+    ax.text(0.5, -0.20, f" ({prefixes[i]})  交易注入速率 = {speed}(笔/秒)", transform=ax.transAxes, ha='center', fontsize=20)
 
 plt.tight_layout()
 plt.show()
-# fig.savefig('tps_plot.pdf', format='pdf')
-fig.savefig('tps_plot.pdf', format='png')
+fig.savefig('tps_plot.pdf', format='pdf')
+# fig.savefig('tps_plot.pdf', format='png')
